@@ -1,0 +1,92 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "GTW",
+    "description": "GTW",
+    "version": "1.0.0",
+    "host":""
+  },
+  "servers": [
+    {
+      "url": "https://api.dev.gtwphi.com/api/v1",
+      "description": "Desenvolvimento"
+    },
+    {
+      "url": "http://api.gtwphi.com/api/v1",
+      "description": "Produção"
+    }
+  ],
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ],
+  "paths": {
+    "/customer/address": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "get-customer-address",
+        "description": "Busca de endereço por usuário",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "User-Info",
+            "description": "Cabeçalho com token de informações do usuário",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Cabeçalho com token de informações de autorização",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso"
+          },
+          "400": {
+            "description": "Não autorizado"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "Date": {
+        "type": "string",
+        "description": "Data no formato ISO 8601",
+        "example": "2020-12-20"
+      },
+      "DateTime": {
+        "type": "string",
+        "description": "Data e hora no formato ISO 8601",
+        "example": "2020-12-20T13:20:01.000"
+      },
+      "ImageTypeEnum": {
+        "type": "string",
+        "description": "Tipo de arquivo - Image",
+        "enum": [
+          "JPEG",
+          "PNG"
+        ]
+      }
+    }
+  }
+}
